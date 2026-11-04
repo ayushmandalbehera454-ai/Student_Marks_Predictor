@@ -1,10 +1,15 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Student Marks Predictor</title>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 * {
@@ -18,114 +23,207 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Segoe UI', sans-serif;
-    background: radial-gradient(circle at top left, #253b80, transparent 40%),
-                radial-gradient(circle at bottom right, #512b81, transparent 40%),
-                #080e20;
-    padding: 20px;
+    padding: 25px;
+    font-family: 'Inter', sans-serif;
+    background:
+        radial-gradient(circle at 15% 20%, #193b72 0%, transparent 35%),
+        radial-gradient(circle at 85% 80%, #38236d 0%, transparent 35%),
+        #080d1b;
+    overflow-x: hidden;
 }
 
-/* Main upload card */
+/* Background decoration */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.35;
+    z-index: -1;
+    animation: float 7s ease-in-out infinite alternate;
+}
+
+body::before {
+    background: #00d9ff;
+    top: 5%;
+    left: 5%;
+}
+
+body::after {
+    background: #8255ff;
+    bottom: 5%;
+    right: 5%;
+    animation-delay: 2s;
+}
+
+@keyframes float {
+    from { transform: translateY(0px); }
+    to { transform: translateY(35px); }
+}
+
+/* Main Card */
 .upload-card {
     width: 100%;
-    max-width: 500px;
-    padding: 40px 35px;
+    max-width: 530px;
+    padding: 45px 42px;
     text-align: center;
-    border-radius: 24px;
-    background: rgba(255, 255, 255, 0.07);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    backdrop-filter: blur(18px);
-    box-shadow: 0 0 25px rgba(0, 225, 255, 0.15),
-                0 0 60px rgba(110, 70, 255, 0.15);
-    transition: 0.4s;
+    position: relative;
+    border-radius: 28px;
+    background: rgba(17, 27, 51, 0.82);
+    border: 1px solid rgba(123, 177, 255, 0.22);
+    backdrop-filter: blur(22px);
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.4),
+        0 0 35px rgba(0, 210, 255, 0.08);
+    animation: appear 0.8s ease;
+    transition: 0.4s ease;
 }
 
 .upload-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 0 35px rgba(0, 225, 255, 0.3),
-                0 0 80px rgba(110, 70, 255, 0.25);
+    transform: translateY(-5px);
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.5),
+        0 0 45px rgba(0, 210, 255, 0.15);
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Top Badge */
+.top-badge {
+    display: inline-block;
+    padding: 8px 15px;
+    margin-bottom: 23px;
+    border-radius: 30px;
+    color: #62e8ff;
+    background: rgba(0, 213, 255, 0.09);
+    border: 1px solid rgba(0, 213, 255, 0.2);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
 }
 
 /* Heading */
 .upload-card h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
     color: #ffffff;
-    font-size: 28px;
-    margin-bottom: 12px;
-    text-shadow: 0 0 15px rgba(0, 225, 255, 0.7);
+    line-height: 1.4;
+    margin-bottom: 13px;
 }
 
-.upload-card p {
-    color: #bdc9e6;
+.upload-card h1 span {
+    background: linear-gradient(90deg, #42e8ff, #9b8aff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.description {
+    color: #a9b8d4;
     font-size: 14px;
-    line-height: 1.6;
-    margin-bottom: 28px;
+    line-height: 1.8;
+    margin-bottom: 32px;
 }
 
-/* Upload area */
+/* Upload Area */
 .upload-area {
     display: block;
-    padding: 30px 20px;
-    border: 2px dashed #39d9ff;
-    border-radius: 16px;
-    background: rgba(0, 225, 255, 0.05);
+    padding: 35px 20px;
+    border: 2px dashed rgba(58, 214, 255, 0.55);
+    border-radius: 20px;
+    background: rgba(27, 190, 255, 0.045);
     cursor: pointer;
-    transition: 0.3s;
+    transition: all 0.35s ease;
 }
 
 .upload-area:hover {
-    background: rgba(0, 225, 255, 0.12);
-    border-color: #ffffff;
-    box-shadow: 0 0 20px rgba(0, 225, 255, 0.25);
+    background: rgba(27, 190, 255, 0.1);
+    border-color: #51e6ff;
+    transform: scale(1.015);
+    box-shadow: 0 0 25px rgba(39, 209, 255, 0.12);
 }
 
 .upload-icon {
-    font-size: 45px;
-    margin-bottom: 12px;
+    width: 75px;
+    height: 75px;
+    margin: 0 auto 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 22px;
+    font-size: 35px;
+    background: linear-gradient(135deg, #123f6c, #30306d);
+    box-shadow: 0 8px 25px rgba(0, 191, 255, 0.15);
+    transition: 0.3s;
+}
+
+.upload-area:hover .upload-icon {
+    transform: translateY(-5px) rotate(-5deg);
 }
 
 .upload-area h3 {
-    color: #ffffff;
-    font-size: 17px;
-    margin-bottom: 8px;
+    font-family: 'Poppins', sans-serif;
+    color: #f4f8ff;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 9px;
 }
 
-.upload-area span {
-    color: #9fb2d9;
-    font-size: 13px;
+.upload-area .file-info {
+    color: #92a6ca;
+    font-size: 12px;
+    line-height: 1.7;
 }
 
-/* Hide default input */
 #file {
     display: none;
 }
 
-/* File name */
+/* File Name */
 #file-name {
-    color: #54eaff;
-    margin-top: 15px;
-    font-size: 13px;
+    color: #55e5ff;
+    margin-top: 17px;
+    font-size: 12px;
+    font-weight: 600;
     overflow-wrap: anywhere;
 }
 
-/* Predict button */
+/* Predict Button */
 .predict-btn {
     width: 100%;
-    margin-top: 25px;
-    padding: 15px;
+    margin-top: 27px;
+    padding: 17px;
     border: none;
-    border-radius: 12px;
+    border-radius: 14px;
     color: #071426;
-    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
     font-weight: 700;
+    letter-spacing: 0.3px;
     cursor: pointer;
-    background: linear-gradient(90deg, #36e4ff, #8b7cff);
-    box-shadow: 0 0 18px rgba(54, 228, 255, 0.35);
-    transition: 0.3s;
+    background: linear-gradient(100deg, #35e3ff, #8d7aff);
+    box-shadow: 0 8px 25px rgba(48, 198, 255, 0.2);
+    transition: all 0.3s ease;
 }
 
 .predict-btn:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 30px rgba(54, 228, 255, 0.65);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(48, 198, 255, 0.4);
+    filter: brightness(1.08);
 }
 
 .predict-btn:active {
@@ -134,13 +232,36 @@ body {
 
 /* Footer */
 .footer {
-    margin-top: 25px;
-    color: #8495b8;
-    font-size: 12px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    color: #8193b5;
+    font-size: 11px;
+    letter-spacing: 0.5px;
 }
 
 .footer strong {
-    color: #43dcff;
+    color: #52dcff;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    body {
+        padding: 15px;
+    }
+
+    .upload-card {
+        padding: 35px 22px;
+        border-radius: 22px;
+    }
+
+    .upload-card h1 {
+        font-size: 25px;
+    }
+
+    .upload-area {
+        padding: 28px 15px;
+    }
 }
 </style>
 </head>
@@ -149,11 +270,18 @@ body {
 
 <div class="upload-card">
 
-    <h1>🎓 Student Marks Predictor</h1>
+    <div class="top-badge">
+        ✦ Smart Academic Analytics
+    </div>
 
-    <p>
-        Upload student academic data and get
-        machine learning-based marks predictions.
+    <h1>
+        Student Marks<br>
+        <span>Predictor</span>
+    </h1>
+
+    <p class="description">
+        Transform student academic data into meaningful
+        predictions using intelligent machine learning.
     </p>
 
     <form action="/predict" method="POST"
@@ -163,9 +291,12 @@ body {
 
             <div class="upload-icon">📂</div>
 
-            <h3>Choose Student Data File</h3>
+            <h3>Upload Your Dataset</h3>
 
-            <span>Click here to browse CSV or Excel files</span>
+            <div class="file-info">
+                Drag your file here or click to browse<br>
+                Supported formats: CSV and Excel
+            </div>
 
             <div id="file-name">No file selected</div>
 
@@ -180,13 +311,15 @@ body {
         >
 
         <button type="submit" class="predict-btn">
-            ✨ Predict Student Marks
+            ✨ Generate Marks Prediction →
         </button>
 
     </form>
 
     <div class="footer">
-        Powered by <strong>Machine Learning</strong>
+        POWERED BY <strong>MACHINE LEARNING</strong>
+        <br><br>
+        Smart Education • Better Predictions
     </div>
 
 </div>
@@ -196,13 +329,28 @@ const fileInput = document.getElementById("file");
 const fileName = document.getElementById("file-name");
 
 fileInput.addEventListener("change", function () {
+
     if (this.files.length > 0) {
-        fileName.textContent = "Selected: " + this.files[0].name;
+
+        const file = this.files[0];
+        const allowedExtensions = /\.(csv|xlsx)$/i;
+
+        if (!allowedExtensions.test(file.name)) {
+            alert("Please upload only CSV or Excel files.");
+            this.value = "";
+            fileName.textContent = "No file selected";
+            return;
+        }
+
+        fileName.textContent = "✓ Selected: " + file.name;
+
     } else {
         fileName.textContent = "No file selected";
     }
+
 });
 </script>
 
 </body>
 </html>
+```
